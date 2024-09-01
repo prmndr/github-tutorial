@@ -1,2 +1,5 @@
-"# My Project" 
-"New feature description" 
+<<<<<<< HEAD
+Your current changes
+=======
+Changes from another branch
+>>>>>>> main
