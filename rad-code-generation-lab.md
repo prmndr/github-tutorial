@@ -105,6 +105,10 @@ def generate_crud_routes(model):
         db.session.commit()
         return '', 204
 
+    @app.route('/api/user', methods=['GET'])
+    def list_users():
+        users = User.query.all()
+        return jsonify([{column.name: getattr(user, column.name) for column in user.__table__.columns} for user in users])
 # Generate CRUD routes for User model
 generate_crud_routes(User)
 
@@ -157,6 +161,20 @@ Create `templates/index.html`:
         }
 
         async function fetchUsers() {
+        const userList = document.getElementById('userList');
+        userList.innerHTML = 'Loading...';
+        try {
+        const response = await axios.get('/api/user');
+        userList.innerHTML = '<h2>Users:</h2><ul>' + 
+            response.data.map(user => `<li>${user.name} (${user.email})</li>`).join('') +
+            '</ul>';
+        } catch (error) {
+        console.error('Error fetching users:', error);
+        userList.innerHTML = 'Error fetching users';
+        }
+    }
+
+        async function fetchUsers() {
             const userList = document.getElementById('userList');
             userList.innerHTML = 'Loading...';
             try {
@@ -187,7 +205,7 @@ Create `templates/index.html`:
 3. Use the form to add users and see the list update.
 
 4. Test the API endpoints using cURL or a tool like Postman:
-   - Create: `curl -X POST -H "Content-Type: application/json" -d '{"name":"John Doe","email":"john@example.com"}' http://localhost:5000/api/user`
+   - Create: `curl -X POST -H "Content-Type: application/json" -d "{\"name\":\"CD\",\"email\":\"cd@example.com\"}" http://localhost:5000/api/user`
    - Read: `curl http://localhost:5000/api/user/1`
    - Update: `curl -X PUT -H "Content-Type: application/json" -d '{"name":"Jane Doe"}' http://localhost:5000/api/user/1`
    - Delete: `curl -X DELETE http://localhost:5000/api/user/1`
