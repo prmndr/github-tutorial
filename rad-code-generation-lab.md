@@ -35,8 +35,11 @@ You're a software developer tasked with quickly creating a prototype for a user 
    ```
    pip install flask flask-sqlalchemy
    ```
+   #### Flask-SQLAlchemy is a Flask extension that adds support for SQLAlchemy to your Flask application.
+   #### SQLAlchemy is a comprehensive and flexible SQL toolkit and Object-Relational Mapping (ORM) library for Python.
+   #### ORM: Allows you to interact with databases using Python objects instead of writing SQL directly.
 
-4. Create the following file structure:
+5. Create the following file structure:
    ```
    rad-code-gen-lab/
    ├── app.py
