@@ -1,4 +1,4 @@
-# End-User Monitoring Practical Guide for B.Tech Students
+# End-User Monitoring Practical Guide
 
 ## Objective
 To set up a basic end-user monitoring system using Python and create a simple web application to demonstrate monitoring capabilities.
